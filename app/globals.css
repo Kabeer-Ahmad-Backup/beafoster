@@ -130,3 +130,14 @@ h6:not([class]) {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Success / receipt pages: hide chrome when saving as PDF from print */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+  }
+}

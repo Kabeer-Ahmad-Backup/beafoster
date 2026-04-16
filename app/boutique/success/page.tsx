@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
+import CheckoutReceiptDetails from '@/components/checkout/CheckoutReceiptDetails';
 
 function SuccessInner() {
   const searchParams = useSearchParams();
@@ -19,29 +20,28 @@ function SuccessInner() {
   }, [sessionId, clearCart]);
 
   return (
-    <div className="min-h-screen bg-cream px-4 pb-20 pt-8">
-      <div className="container-luxury max-w-lg mx-auto text-center">
+    <div className="min-h-screen bg-cream px-4 pb-20 pt-8 print:bg-white">
+      <div className="container-luxury mx-auto max-w-2xl">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white border border-beige p-10 shadow-lg"
+          className="border border-beige bg-white p-8 shadow-lg sm:p-10 print:border-0 print:shadow-none"
         >
-          <CheckCircle className="w-16 h-16 text-gold mx-auto mb-6" aria-hidden />
-          <h1 className="text-3xl font-serif text-black mb-3">Thank you</h1>
-          <p className="text-charcoal leading-relaxed mb-6">
-            Your payment was received. You will get a confirmation email from Stripe with your receipt.
-            {sessionId && (
-              <span className="block mt-2 text-sm text-charcoal/80">
-                Order reference: {sessionId.slice(0, 20)}…
-              </span>
-            )}
+          <CheckCircle className="mx-auto mb-6 h-16 w-16 text-gold" aria-hidden />
+          <h1 className="mb-3 text-center font-serif text-3xl text-black">Thank you</h1>
+          <p className="mb-2 text-center leading-relaxed text-charcoal">
+            Your payment was received. Below is your receipt in case Stripe&apos;s confirmation email is delayed or
+            filtered.
           </p>
-          <Link
-            href="/boutique"
-            className="inline-block px-8 py-3 bg-black text-white hover:bg-charcoal transition-colors text-sm uppercase tracking-widest"
-          >
-            Back to boutique
-          </Link>
+          <CheckoutReceiptDetails sessionId={sessionId} />
+          <div className="no-print mt-10 text-center">
+            <Link
+              href="/boutique"
+              className="inline-block bg-black px-8 py-3 text-sm uppercase tracking-widest text-white transition-colors hover:bg-charcoal"
+            >
+              Back to boutique
+            </Link>
+          </div>
         </motion.div>
       </div>
     </div>
