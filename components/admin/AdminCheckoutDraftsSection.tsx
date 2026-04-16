@@ -1,5 +1,6 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { Fragment, useMemo, useState } from 'react';
 import { ChevronDown, ChevronRight, FileStack } from 'lucide-react';
 import type { AdminCheckoutDraft } from '@/lib/adminCheckoutDraftTypes';
@@ -23,7 +24,22 @@ function draftTotalCents(d: AdminCheckoutDraft) {
   return d.line_items.reduce((s, li) => s + li.unitPriceCents * li.quantity, 0);
 }
 
-export default function AdminCheckoutDraftsSection({ drafts }: { drafts: AdminCheckoutDraft[] }) {
+export default function AdminCheckoutDraftsSection({
+  drafts,
+  title = 'Checkout drafts',
+  description = 'Carts saved when checkout begins (before Stripe confirms). Expand a row for line items and draft id.',
+  emptyTitle = 'No in-progress checkouts',
+  emptyDescription = 'Drafts appear when a customer starts Stripe checkout; they are removed when payment completes or if session creation fails.',
+  stripeMetadataNote,
+}: {
+  drafts: AdminCheckoutDraft[];
+  title?: string;
+  description?: string;
+  emptyTitle?: string;
+  emptyDescription?: string;
+  /** Override default Stripe metadata explanation (e.g. gala tickets use ticket_draft_id). */
+  stripeMetadataNote?: ReactNode;
+}) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   const sorted = useMemo(
@@ -35,11 +51,8 @@ export default function AdminCheckoutDraftsSection({ drafts }: { drafts: AdminCh
     return (
       <section className="rounded-xl border border-dashed border-beige bg-white/60 p-8 text-center shadow-sm">
         <FileStack className="mx-auto h-9 w-9 text-charcoal/25" aria-hidden />
-        <h2 className="mt-3 font-serif text-lg text-charcoal">Checkout drafts</h2>
-        <p className="mx-auto mt-2 max-w-lg text-sm text-charcoal/55">
-          No in-progress checkouts. Drafts appear when a customer starts Stripe checkout; they are removed when
-          payment completes or if session creation fails.
-        </p>
+        <h2 className="mt-3 font-serif text-lg text-charcoal">{emptyTitle}</h2>
+        <p className="mx-auto mt-2 max-w-lg text-sm text-charcoal/55">{emptyDescription}</p>
       </section>
     );
   }
@@ -47,10 +60,8 @@ export default function AdminCheckoutDraftsSection({ drafts }: { drafts: AdminCh
   return (
     <section>
       <div className="mb-4 max-w-3xl">
-        <h2 className="font-serif text-xl text-charcoal sm:text-2xl">Checkout drafts</h2>
-        <p className="mt-1 text-sm text-charcoal/55">
-          Carts saved when checkout begins (before Stripe confirms). Expand a row for line items and draft id.
-        </p>
+        <h2 className="font-serif text-xl text-charcoal sm:text-2xl">{title}</h2>
+        <p className="mt-1 text-sm text-charcoal/55">{description}</p>
       </div>
       <div className="overflow-x-auto rounded-xl border border-beige bg-white/95 shadow-sm">
         <table className="w-full min-w-[640px] text-left text-sm">
@@ -125,9 +136,13 @@ export default function AdminCheckoutDraftsSection({ drafts }: { drafts: AdminCh
                               <div>
                                 <dt className="text-charcoal/50">Stripe metadata</dt>
                                 <dd className="text-xs text-charcoal/65">
-                                  Sent as <code className="rounded bg-beige/60 px-1">draft_id</code> and{' '}
-                                  <code className="rounded bg-beige/60 px-1">client_reference_id</code> on the Checkout
-                                  Session until paid or abandoned.
+                                  {stripeMetadataNote ?? (
+                                    <>
+                                      Sent as <code className="rounded bg-beige/60 px-1">draft_id</code> and{' '}
+                                      <code className="rounded bg-beige/60 px-1">client_reference_id</code> on the Checkout
+                                      Session until paid or abandoned.
+                                    </>
+                                  )}
                                 </dd>
                               </div>
                             </dl>

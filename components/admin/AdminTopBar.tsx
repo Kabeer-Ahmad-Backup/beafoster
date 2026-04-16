@@ -21,9 +21,9 @@ export default function AdminTopBar() {
             href="/admin"
             className="font-serif text-lg text-charcoal transition-colors hover:text-gold sm:text-xl"
           >
-            Boutique admin
+            Admin dashboard
           </Link>
-          <span className="hidden text-xs uppercase tracking-wider text-charcoal/50 sm:inline">Orders & Stripe</span>
+          <span className="hidden text-xs uppercase tracking-wider text-charcoal/50 sm:inline">Boutique · Tickets · Stripe</span>
         </div>
         <nav className="flex flex-wrap items-center gap-1 text-sm sm:gap-2">
           <Link
