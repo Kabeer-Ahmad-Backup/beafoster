@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { constructStripeWebhookEvent } from '@/lib/stripeMode';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
+import { handleEventTicketCheckoutCompleted } from '@/lib/stripeEventTicketWebhook';
 
 export const runtime = 'nodejs';
 
@@ -34,6 +35,19 @@ export async function POST(request: Request) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
+
+    const ticketDraftId =
+      typeof session.metadata?.ticket_draft_id === 'string'
+        ? session.metadata.ticket_draft_id
+        : session.metadata?.checkout_kind === 'event_ticket' && typeof session.client_reference_id === 'string'
+          ? session.client_reference_id
+          : null;
+
+    if (ticketDraftId) {
+      await handleEventTicketCheckoutCompleted(supabase, session, ticketDraftId);
+      return NextResponse.json({ received: true });
+    }
+
     const draftId = session.metadata?.draft_id ?? session.client_reference_id;
     if (!draftId) {
       console.error('checkout.session.completed missing draft_id', session.id);

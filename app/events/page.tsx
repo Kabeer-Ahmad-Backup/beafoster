@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Calendar, MapPin, Clock, Star, Heart, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { upcomingEvent } from '@/lib/eventData';
+import TicketBookButton from '@/components/events/TicketBookButton';
 
 export default function Events() {
 
@@ -95,7 +96,7 @@ export default function Events() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-serif text-black mb-8"
           >
-            The Night You’ll Never Forget
+            The Night You&apos;ll Never Forget
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -153,7 +154,7 @@ export default function Events() {
       </section>
 
       {/* Tickets Section */}
-      <section className="py-16 md:py-24 bg-beige relative">
+      <section id="tickets" className="scroll-mt-24 py-16 md:py-24 bg-beige relative">
         <div className="container-luxury px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -181,7 +182,10 @@ export default function Events() {
                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gold" /> Fashion show & awards</li>
                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gold" /> Door prizes & giveaways</li>
               </ul>
-              <button className="w-full py-4 bg-black text-white uppercase tracking-widest hover:bg-gold hover:text-black transition-colors font-medium">Coming Soon</button>
+              <TicketBookButton
+                tier="general"
+                className="w-full py-4 bg-black text-white uppercase tracking-widest transition-colors font-medium hover:bg-gold hover:text-black disabled:opacity-60"
+              />
             </motion.div>
 
             {/* VIP Admission */}
@@ -202,7 +206,10 @@ export default function Events() {
                 <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-gold" /> <strong>Exclusive VIP Gift</strong></li>
                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gold" /> All General Admission benefits</li>
               </ul>
-              <button className="w-full py-4 bg-gold text-black uppercase tracking-widest hover:bg-white transition-colors font-medium">Coming Soon</button>
+              <TicketBookButton
+                tier="vip"
+                className="w-full py-4 bg-gold text-black uppercase tracking-widest transition-colors font-medium hover:bg-white disabled:opacity-60"
+              />
             </motion.div>
           </div>
 
@@ -417,9 +424,12 @@ export default function Events() {
             <a href="mailto:info@theblacktiechandeliergala.com" className="px-8 py-4 bg-gold text-black font-medium uppercase tracking-wider hover:bg-white transition-colors">
               Contact Us
             </a>
-            <button disabled className="px-8 py-4 border border-white/30 text-white/50 cursor-not-allowed uppercase tracking-wider">
-              Tickets Coming Soon
-            </button>
+            <Link
+              href="/events#tickets"
+              className="px-8 py-4 border border-white/60 text-white uppercase tracking-wider transition-colors hover:border-gold hover:text-gold"
+            >
+              Book tickets
+            </Link>
           </div>
           <p className="mt-8 text-sm text-white/40">Inquiries: info@theblacktiechandeliergala.com</p>
         </div>
