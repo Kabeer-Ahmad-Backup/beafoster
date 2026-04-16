@@ -9,7 +9,7 @@ const magazines = [
   { year: '2018', title: '2018 Magazine', pdf: '/2018_mag.pdf' },
 ];
 
-const FLIPBOOK_URL = 'https://heyzine.com/flip-book/d13cbc9f23.html';
+const FLIPBOOK_URL = 'https://heyzine.com/flip-book/e8603ec929.html';
 
 export default function MagazineFlipbookSection() {
   return (

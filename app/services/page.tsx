@@ -45,7 +45,7 @@ export default function Services() {
     ];
 
     return (
-        <div className="pt-20 min-h-screen bg-white">
+        <div className="min-h-screen bg-white">
             {/* Hero Section */}
             <section className="relative py-20 md:py-32 bg-cream overflow-hidden">
                 <div className="container-luxury px-4 relative z-10 text-center">

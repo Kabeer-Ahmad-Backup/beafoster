@@ -1,10 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Instagram, Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   const footerSections = {
     services: {
       title: 'Services',
@@ -285,6 +291,14 @@ export default function Footer() {
                 className="hover:text-gold transition-colors relative group"
               >
                 Cookie Policy
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-gold group-hover:w-full transition-all duration-300" />
+              </Link>
+              <span className="text-gray-600 hidden sm:inline">•</span>
+              <Link
+                href="/admin"
+                className="hover:text-gold transition-colors relative group text-gray-500"
+              >
+                Orders admin
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-gold group-hover:w-full transition-all duration-300" />
               </Link>
             </div>

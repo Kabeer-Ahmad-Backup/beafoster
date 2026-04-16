@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function Careers() {
   return (
-    <div className="pt-20 min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       <section className="py-12 sm:py-16 md:py-24 bg-cream">
         <div className="container-luxury px-4">
           <motion.div

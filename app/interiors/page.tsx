@@ -31,7 +31,7 @@ export default function Interiors() {
   ];
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section */}
       <section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center justify-center bg-cream overflow-hidden py-12 sm:py-16 md:py-0">
         <div className="container-luxury text-center z-10">

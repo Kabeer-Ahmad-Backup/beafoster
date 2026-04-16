@@ -91,7 +91,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] lg:min-h-[70vh] overflow-hidden bg-cream">
         <div className="absolute inset-0">

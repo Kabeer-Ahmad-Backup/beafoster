@@ -31,7 +31,7 @@ export default function Masterclass() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Two Column */}
-      <section className="min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh] flex items-center bg-cream relative overflow-hidden pt-20">
+      <section className="min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh] flex items-center bg-cream relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />

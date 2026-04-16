@@ -6,7 +6,12 @@ import Image from 'next/image';
 import { ArrowRight, ShoppingBag, Calendar, Award, ChevronLeft, ChevronRight, BookOpen, Star } from 'lucide-react';
 import MagazineFlipbookSection from '@/components/MagazineFlipbookSection';
 import { upcomingEvent } from '@/lib/eventData';
+import { getProduct, productIsForSale } from '@/lib/boutiqueCatalog';
 import { useRef } from 'react';
+
+function formatPrice(cents: number) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cents / 100);
+}
 
 export default function Home() {
   const fashionScrollRef = useRef<HTMLDivElement>(null);
@@ -50,7 +55,7 @@ export default function Home() {
   };
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section */}
       <section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden bg-cream py-8 sm:py-12 md:py-16">
         {/* Background Image with Overlay */}
@@ -402,7 +407,9 @@ export default function Home() {
                   ref={fashionScrollRef}
                   className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
                 >
-                  {boutiqueProducts.fashion.map((product) => (
+                  {boutiqueProducts.fashion.map((product) => {
+                    const listed = getProduct(product.id);
+                    return (
                     <Link
                       key={product.id}
                       href="/boutique"
@@ -422,12 +429,16 @@ export default function Home() {
                             {product.name}
                           </h4>
                           <span className="text-sm sm:text-base uppercase tracking-wider !text-gold">
-                            Contact to Purchase
+                            {!listed
+                              ? 'Shop boutique'
+                              : productIsForSale(listed)
+                                ? formatPrice(listed.priceCents!)
+                                : 'Coming soon'}
                           </span>
                         </div>
                       </div>
                     </Link>
-                  ))}
+                  );})}
                 </div>
                 <div className="flex justify-center md:justify-start gap-2 mt-4">
                   <button
@@ -472,7 +483,9 @@ export default function Home() {
                   ref={accessoriesScrollRef}
                   className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
                 >
-                  {boutiqueProducts.accessories.map((product) => (
+                  {boutiqueProducts.accessories.map((product) => {
+                    const listed = getProduct(product.id);
+                    return (
                     <Link
                       key={product.id}
                       href="/boutique"
@@ -492,12 +505,16 @@ export default function Home() {
                             {product.name}
                           </h4>
                           <span className="text-sm sm:text-base uppercase tracking-wider !text-gold">
-                            Contact to Purchase
+                            {!listed
+                              ? 'Shop boutique'
+                              : productIsForSale(listed)
+                                ? formatPrice(listed.priceCents!)
+                                : 'Coming soon'}
                           </span>
                         </div>
                       </div>
                     </Link>
-                  ))}
+                  );})}
                 </div>
                 <div className="flex justify-center md:justify-start gap-2 mt-4">
                   <button
@@ -542,7 +559,9 @@ export default function Home() {
                   ref={interiorScrollRef}
                   className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
                 >
-                  {boutiqueProducts.home.map((product) => (
+                  {boutiqueProducts.home.map((product) => {
+                    const listed = getProduct(product.id);
+                    return (
                     <Link
                       key={product.id}
                       href="/boutique"
@@ -562,12 +581,16 @@ export default function Home() {
                             {product.name}
                           </h4>
                           <span className="text-sm sm:text-base uppercase tracking-wider !text-gold">
-                            Contact to Purchase
+                            {!listed
+                              ? 'Shop boutique'
+                              : productIsForSale(listed)
+                                ? formatPrice(listed.priceCents!)
+                                : 'Coming soon'}
                           </span>
                         </div>
                       </div>
                     </Link>
-                  ))}
+                  );})}
                 </div>
                 <div className="flex justify-center md:justify-start gap-2 mt-4">
                   <button

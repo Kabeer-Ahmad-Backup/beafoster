@@ -16,7 +16,7 @@ export default function About() {
   ];
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section - About Dr. Bea */}
       <section className="min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center bg-cream relative overflow-hidden py-12 sm:py-16 md:py-24">
         <div className="container-luxury w-full">

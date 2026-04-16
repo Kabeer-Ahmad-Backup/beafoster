@@ -2,20 +2,29 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export interface CartItem {
-  id: string;
+  lineId: string;
+  productId: string;
   name: string;
-  price: number;
+  priceCents: number;
   image: string;
   quantity: number;
+  size?: string;
   category?: string;
 }
 
 interface CartStore {
   items: CartItem[];
   isOpen: boolean;
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
-  removeItem: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
+  addItem: (item: {
+    productId: string;
+    name: string;
+    priceCents: number;
+    image: string;
+    size?: string;
+    category?: string;
+  }) => void;
+  removeItem: (lineId: string) => void;
+  updateQuantity: (lineId: string, quantity: number) => void;
   clearCart: () => void;
   toggleCart: () => void;
   openCart: () => void;
@@ -24,33 +33,52 @@ interface CartStore {
   getItemCount: () => number;
 }
 
+function makeLineId(productId: string, size?: string) {
+  return `${productId}::${size ?? 'os'}`;
+}
+
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
       isOpen: false,
       addItem: (item) => {
-        const existingItem = get().items.find((i) => i.id === item.id);
-        if (existingItem) {
+        const lineId = makeLineId(item.productId, item.size);
+        const existing = get().items.find((i) => i.lineId === lineId);
+        if (existing) {
           set({
             items: get().items.map((i) =>
-              i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+              i.lineId === lineId ? { ...i, quantity: i.quantity + 1 } : i
             ),
           });
         } else {
-          set({ items: [...get().items, { ...item, quantity: 1 }] });
+          set({
+            items: [
+              ...get().items,
+              {
+                lineId,
+                productId: item.productId,
+                name: item.name,
+                priceCents: item.priceCents,
+                image: item.image,
+                quantity: 1,
+                size: item.size,
+                category: item.category,
+              },
+            ],
+          });
         }
       },
-      removeItem: (id) => {
-        set({ items: get().items.filter((i) => i.id !== id) });
+      removeItem: (lineId) => {
+        set({ items: get().items.filter((i) => i.lineId !== lineId) });
       },
-      updateQuantity: (id, quantity) => {
+      updateQuantity: (lineId, quantity) => {
         if (quantity <= 0) {
-          get().removeItem(id);
+          get().removeItem(lineId);
         } else {
           set({
             items: get().items.map((i) =>
-              i.id === id ? { ...i, quantity } : i
+              i.lineId === lineId ? { ...i, quantity } : i
             ),
           });
         }
@@ -68,9 +96,11 @@ export const useCartStore = create<CartStore>()(
         set({ isOpen: false });
       },
       getTotal: () => {
-        return get().items.reduce(
-          (total, item) => total + item.price * item.quantity,
-          0
+        return (
+          get().items.reduce(
+            (total, item) => total + item.priceCents * item.quantity,
+            0
+          ) / 100
         );
       },
       getItemCount: () => {
@@ -78,8 +108,7 @@ export const useCartStore = create<CartStore>()(
       },
     }),
     {
-      name: 'bea-foster-cart',
+      name: 'bea-foster-cart-v2',
     }
   )
 );
-

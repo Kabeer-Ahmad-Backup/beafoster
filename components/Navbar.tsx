@@ -1,17 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  /** Avoid hydration mismatch: persisted cart is empty on server, may load on client. */
+  const [cartHydrated, setCartHydrated] = useState(false);
   const { openCart, getItemCount } = useCartStore();
+
+  useEffect(() => {
+    setCartHydrated(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +28,14 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
+  const itemCount = getItemCount();
+  const showCartBadge = cartHydrated && itemCount > 0;
+  const badgeLabel = itemCount > 9 ? '9+' : String(itemCount);
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -42,6 +58,7 @@ export default function Navbar() {
   ];
 
   return (
+    <Fragment>
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -90,14 +107,10 @@ export default function Navbar() {
               aria-label="Shopping cart"
             >
               <ShoppingBag className="w-5 h-5 text-charcoal group-hover:text-black transition-colors" />
-              {getItemCount() > 0 && (
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-gold text-black text-xs font-bold rounded-full flex items-center justify-center shadow-lg"
-                >
-                  {getItemCount() > 9 ? '9+' : getItemCount()}
-                </motion.span>
+              {showCartBadge && (
+                <span className="absolute -top-1 -right-1 min-w-5 h-5 px-0.5 bg-gold text-black text-xs font-bold rounded-full flex items-center justify-center shadow-lg tabular-nums">
+                  {badgeLabel}
+                </span>
               )}
             </button>
           </div>
@@ -181,14 +194,10 @@ export default function Navbar() {
               aria-label="Shopping cart"
             >
               <ShoppingBag className="w-5 h-5 text-charcoal group-hover:text-black transition-colors" />
-              {getItemCount() > 0 && (
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-gold text-black text-xs font-bold rounded-full flex items-center justify-center shadow-lg"
-                >
-                  {getItemCount() > 9 ? '9+' : getItemCount()}
-                </motion.span>
+              {showCartBadge && (
+                <span className="absolute -top-1 -right-1 min-w-5 h-5 px-0.5 bg-gold text-black text-xs font-bold rounded-full flex items-center justify-center shadow-lg tabular-nums">
+                  {badgeLabel}
+                </span>
               )}
             </button>
           </div>
@@ -273,6 +282,9 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
+    {/* Reserves space for fixed bar so page content starts below the navbar */}
+    <div className="h-16 shrink-0 sm:h-20" aria-hidden />
+    </Fragment>
   );
 }
 

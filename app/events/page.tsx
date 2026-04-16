@@ -36,7 +36,7 @@ export default function Events() {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] overflow-hidden">
         <div className="absolute inset-0">

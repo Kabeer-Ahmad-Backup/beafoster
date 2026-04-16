@@ -45,7 +45,7 @@ export default function Magazine() {
   ];
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section */}
       <section className="py-16 md:py-24 lg:py-32 bg-cream relative overflow-hidden">
         <div className="container-luxury w-full">
@@ -96,7 +96,7 @@ export default function Magazine() {
               allow="clipboard-write"
               scrolling="no"
               className="fp-iframe w-full border-0"
-              src="https://heyzine.com/flip-book/d13cbc9f23.html"
+              src="https://heyzine.com/flip-book/e8603ec929.html"
               title="2026 Magazine Flipbook"
               style={{ height: '500px' }}
             />

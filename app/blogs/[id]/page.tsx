@@ -13,7 +13,7 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="min-h-screen pt-20 bg-cream flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-cream flex flex-col items-center justify-center">
         <h1 className="text-2xl font-serif text-black mb-4">Post not found</h1>
         <Link href="/blogs" className="text-gold hover:underline">
           ← Back to Blogs
@@ -23,7 +23,7 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen pt-20 bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero Image */}
       <section className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] overflow-hidden bg-charcoal">
         <Image
