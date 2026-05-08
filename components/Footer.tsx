@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Heart } from 'lucide-react';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -255,18 +255,21 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
             <div className="text-center sm:text-left">
               <p className="text-xs sm:text-sm text-gray-400">
-                © {new Date().getFullYear()} The Black Tie Chandelier Gala. All rights reserved.
-              </p>
-              <p className="text-xs text-gray-500 mt-1">
-                Made by{' '}
+                © {new Date().getFullYear()} The Black Tie Chandelier Gala. All rights reserved. Made by{' '}
                 <a
                   href="https://loftyrankers.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gold transition-colors"
+                  className="text-gray-300 hover:text-gold transition-colors"
                 >
                   Lofty Rankers
-                </a>
+                </a>{' '}
+                with{' '}
+                <Heart
+                  className="inline-block h-3.5 w-3.5 shrink-0 align-[-0.125em] fill-gold/90 text-gold"
+                  aria-hidden
+                />
+                <span className="sr-only"> love</span>
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-xs sm:text-sm text-gray-400">

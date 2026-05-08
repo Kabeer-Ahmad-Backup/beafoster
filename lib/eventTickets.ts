@@ -10,12 +10,12 @@ const TIER_CONFIG: Record<
   general: {
     productId: 'GALA_GA',
     displayName: 'Gala — General Admission',
-    unitPriceCents: 100_00,
+    unitPriceCents: 130_00,
   },
   vip: {
     productId: 'GALA_VIP',
     displayName: 'Gala — VIP Experience',
-    unitPriceCents: 150_00,
+    unitPriceCents: 180_00,
   },
 };
 

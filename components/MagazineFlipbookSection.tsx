@@ -4,10 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
-const magazines = [
-  { year: '2017', title: '2017 Magazine', pdf: '/2017_mag.pdf' },
-  { year: '2018', title: '2018 Magazine', pdf: '/2018_mag.pdf' },
-];
+const magazines = [{ year: '2017', title: '2017 Magazine', pdf: '/2017_mag.pdf' }];
 
 const FLIPBOOK_URL = 'https://heyzine.com/flip-book/e8603ec929.html';
 
@@ -54,7 +51,7 @@ export default function MagazineFlipbookSection() {
             </Link>
           </motion.div>
 
-          {/* Right: Past Issues – 2017 & 2018 */}
+          {/* Right: Past issue – 2017 */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -63,7 +60,7 @@ export default function MagazineFlipbookSection() {
             className="order-1 lg:order-2"
           >
             <p className="text-sm uppercase tracking-wider text-charcoal font-medium mb-4">Past issues</p>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="mx-auto grid max-w-xs grid-cols-1 gap-4 sm:gap-6 sm:max-w-sm">
               {magazines.map((mag, index) => (
                 <motion.a
                   key={mag.year}
