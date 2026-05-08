@@ -177,7 +177,7 @@ export default function AdminDashboardTabs({
           <div>
             <h2 className="mb-1 font-serif text-xl text-charcoal sm:text-2xl">Ticket sales</h2>
             <p className="mb-4 text-sm text-charcoal/55">
-              From the Events page (General $100 · VIP $150). Expand any row for Stripe ids, dashboard links, and raw
+              From the Events page (General $130 · VIP $180). Expand any row for Stripe ids, dashboard links, and raw
               customer details from checkout.
             </p>
             <AdminTicketSalesTable rows={ticketSales} siteStripeMode={stripeMode} />

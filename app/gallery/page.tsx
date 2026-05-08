@@ -28,7 +28,6 @@ export default function Gallery() {
     { id: 37, src: '/Pictures 4/3fbc8361-ed77-423b-905d-4a2f2d6cfc9a-md.jpeg', alt: 'Gallery' },
     { id: 38, src: '/Pictures 4/6e254cd3-6a21-40d4-82ec-e82977c29576-md.jpeg', alt: 'Gallery' },
     { id: 39, src: '/Pictures 4/9a8fdfa2-5039-4376-95e0-226c83d76363-2.png', alt: 'Gallery' },
-    { id: 40, src: '/Pictures 4/73df44dc-2ea3-4c2d-b08d-438f0197aee2 (1)large.png', alt: 'Gallery' },
     { id: 41, src: '/Pictures 4/73df44dc-2ea3-4c2d-b08d-438f0197aee2 (2.png', alt: 'Gallery' },
     { id: 42, src: '/Pictures 4/745ad40d-218f-4f18-822b-540c2403c82a.png', alt: 'Gallery' },
     { id: 43, src: '/Pictures 4/65740269-c72d-4c12-90ff-0e16ca2e7cca (1).png', alt: 'Gallery' },
@@ -42,7 +41,6 @@ export default function Gallery() {
     { id: 51, src: '/Pictures 4/c36a9712-3992-4c58-9f9b-7113f72790ec-md.jpeg', alt: 'Gallery' },
     { id: 52, src: '/Pictures 4/c2666639-23cd-4deb-a96f-21e37120811c-3.png', alt: 'Gallery' },
     { id: 53, src: '/Pictures 4/cc87a60b-1e1b-482b-9e14-63f6a4fdc6a7-md.jpeg', alt: 'Gallery' },
-    { id: 54, src: '/Pictures 4/ChatGPT Image Feb 19, 2026, 08_56_52 PM.png', alt: 'Gallery' },
   ];
 
   const filteredImages = galleryImages;

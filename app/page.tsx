@@ -648,9 +648,18 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="bg-white border border-beige overflow-hidden hover:shadow-xl transition-shadow group"
+                  className="flex h-full flex-col overflow-hidden border border-beige bg-white transition-shadow hover:shadow-xl group"
                 >
-                  <div className="p-6 sm:p-8 flex flex-col h-full">
+                  <div className="relative aspect-[2/3] w-full shrink-0 bg-beige">
+                    <Image
+                      src="/Design_in_dark.jpg"
+                      alt="Designing In The Dark — book cover by Bea Foster"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
                     <div className="flex items-center gap-2 mb-4">
                       <BookOpen className="w-6 h-6 text-gold" />
                       <span className="text-sm uppercase tracking-wider text-gold font-medium">Kindle Edition</span>
@@ -686,9 +695,18 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="bg-white border border-beige overflow-hidden hover:shadow-xl transition-shadow group"
+                  className="flex h-full flex-col overflow-hidden border border-beige bg-white transition-shadow hover:shadow-xl group"
                 >
-                  <div className="p-6 sm:p-8 flex flex-col h-full">
+                  <div className="relative aspect-[2/3] w-full shrink-0 bg-beige">
+                    <Image
+                      src="/Bea_and_beauty.jpg"
+                      alt="Bea and Beauty — book cover by Bea Foster"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
                     <div className="flex items-center gap-2 mb-4">
                       <BookOpen className="w-6 h-6 text-gold" />
                       <span className="text-sm uppercase tracking-wider text-gold font-medium">Paperback</span>

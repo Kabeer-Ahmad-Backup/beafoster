@@ -13,11 +13,6 @@ export default function Magazine() {
       title: '2017 Magazine',
       pdf: '/2017_mag.pdf',
     },
-    {
-      year: '2018',
-      title: '2018 Magazine',
-      pdf: '/2018_mag.pdf',
-    },
   ];
 
   const adPricing = [
@@ -123,7 +118,7 @@ export default function Magazine() {
             </h2>
             <div className="w-24 h-px bg-gold mx-auto mb-4" />
             <p className="text-base md:text-lg text-charcoal max-w-2xl mx-auto">
-              Browse through our collection of past issues (2017, 2018)
+              Browse through our collection of past issues (2017)
             </p>
           </motion.div>
 

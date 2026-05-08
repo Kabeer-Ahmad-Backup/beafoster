@@ -175,7 +175,7 @@ export default function Events() {
               className="bg-white p-8 md:p-12 border border-black/10 text-center hover:shadow-2xl transition-all duration-300 relative group"
             >
               <h3 className="text-2xl font-serif text-black mb-2">General Admission</h3>
-              <div className="text-5xl font-serif text-charcoal mb-8">$100<span className="text-base text-gray-500 font-sans">.00</span></div>
+              <div className="text-5xl font-serif text-charcoal mb-8">$130<span className="text-base text-gray-500 font-sans">.00</span></div>
               <ul className="text-left space-y-4 mb-8 text-charcoal">
                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gold" /> Formal Dinner</li>
                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gold" /> Red carpet photo experience</li>
@@ -199,7 +199,7 @@ export default function Events() {
                 Recommended
               </div>
               <h3 className="text-2xl font-serif text-gold mb-2">VIP Experience</h3>
-              <div className="text-5xl font-serif text-white mb-8">$150<span className="text-base text-gray-400 font-sans">.00</span></div>
+              <div className="text-5xl font-serif text-white mb-8">$180<span className="text-base text-gray-400 font-sans">.00</span></div>
               <ul className="text-left space-y-4 mb-8 text-white/90">
                 <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-gold" /> <strong>Preferred VIP Seating</strong></li>
                 <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-gold" /> <strong>Wine Service</strong></li>
